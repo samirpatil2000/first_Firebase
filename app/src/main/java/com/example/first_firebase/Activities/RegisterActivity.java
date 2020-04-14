@@ -33,10 +33,6 @@ public class RegisterActivity extends AppCompatActivity {
     Button button;
     private FirebaseAuth auth;
 
-    int REQUESTCODE = 1 ;
-    int PReqCode = 1 ;
-    Uri pickedImgUri ;
-
 
     public void showMessage(String message){
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
@@ -95,17 +91,17 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT>=22){
-                    checkRequestForPermission();
-                }
-                else{
-                    openGallery();
-                }
-            }
-        });
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (Build.VERSION.SDK_INT>=22){
+//                    checkRequestForPermission();
+//                }
+//                else{
+//                    openGallery();
+//                }
+//            }
+//        });
 
     }
 
@@ -118,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             showMessage(" Your Account is Successfully Created ");
-                            updateUserInfo(name,pickedImgUri,auth.getCurrentUser());
+                            updateUserInfo(name,auth.getCurrentUser());
                         }
                         else{
                             // fail
@@ -131,41 +127,43 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     // update user photo and name
-    private void updateUserInfo(final String name, Uri pickedImgUri, final FirebaseUser currentUser) {
+    private void updateUserInfo(final String name,  final FirebaseUser currentUser) {
         // upload photo to firebase
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("user_photo");
-        final StorageReference imagePAth = storageReference.child(pickedImgUri.getLastPathSegment());
-        imagePAth.putFile(pickedImgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // image uploaded suceesfully
-                // now we can get our image url
-                imagePAth.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+
+
+        UserProfileChangeRequest profileChangeRequest= new UserProfileChangeRequest.Builder()
+                .setDisplayName(name)
+                .build();
+
+        currentUser.updateProfile(profileChangeRequest)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onSuccess(Uri uri) {
-                        // uri cointains user image url
-
-                        UserProfileChangeRequest profileChangeRequest= new UserProfileChangeRequest.Builder()
-                                .setDisplayName(name)
-                                .setPhotoUri(uri)
-                                .build();
-
-                        currentUser.updateProfile(profileChangeRequest)
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()){
-                                            // user info updated succefully
-                                            showMessage("Updated Successfully ");
-                                           homeactivity();
-                                        }
-                                    }
-                                });
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            // user info updated succefully
+                            showMessage("Updated Successfully ");
+                            homeactivity();
+                        }
                     }
                 });
-
-            }
-        });
+//        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("user_photo");
+//        final StorageReference imagePAth = storageReference.child(pickedImgUri.getLastPathSegment());
+//        imagePAth.putFile(pickedImgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                // image uploaded suceesfully
+//                // now we can get our image url
+//                imagePAth.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                    @Override
+//                    public void onSuccess(Uri uri) {
+//                        // uri cointains user image url
+//
+//
+//                    }
+//                });
+//
+//            }
+//        });
 
     }
 
@@ -176,41 +174,5 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
-    private void openGallery() {
 
-        // open gallery intent and wait for user to pick the photo
-
-        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        galleryIntent.setType("image/");
-        startActivityForResult(galleryIntent,REQUESTCODE);
-    }
-
-    private void checkRequestForPermission() {
-        if(ContextCompat.checkSelfPermission(RegisterActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE )!= PackageManager.PERMISSION_GRANTED){
-
-            if(ActivityCompat.shouldShowRequestPermissionRationale(RegisterActivity.this,Manifest.permission.READ_EXTERNAL_STORAGE)){
-                Toast.makeText(RegisterActivity.this,"Please accept require permission",Toast.LENGTH_LONG).show();
-            }
-            else{
-                ActivityCompat.requestPermissions(RegisterActivity.this, new String[]
-                        {Manifest.permission.READ_EXTERNAL_STORAGE}, PReqCode);
-            }
-
-        }
-        else{
-            openGallery();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK && requestCode== REQUESTCODE && data!=null){
-            // the user has successfully picked the an image
-            // we need to save this image
-            pickedImgUri=data.getData();
-            imageView.setImageURI(pickedImgUri);
-        }
-    }
 }
