@@ -1,8 +1,15 @@
 package com.example.first_firebase.Activities;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ClipDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
@@ -27,6 +34,12 @@ public class HomeActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     FirebaseUser currentUser;
+    Dialog popCreatePost ;
+    ImageView popAddImageView ,popCreateImagebtn;
+    EditText popupCreateTitleEditText , popupCreateDescEditText ;
+    ProgressBar popupProgerssBar;
+
+
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -36,9 +49,17 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
 
+
+
+
+
         //
         auth = FirebaseAuth.getInstance();
         currentUser=auth.getCurrentUser();
+
+        // popup
+
+        inPopup();
 
 
         setSupportActionBar(toolbar);
@@ -46,8 +67,9 @@ public class HomeActivity extends AppCompatActivity {
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                popCreatePost.show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -66,6 +88,33 @@ public class HomeActivity extends AppCompatActivity {
         updateNavHeader();
 
     }
+
+    private void inPopup() {
+        popCreatePost=new Dialog(this) ;
+        popCreatePost.setContentView(R.layout.popup_add_post);
+        popCreatePost.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
+        popCreatePost.getWindow().setLayout(Toolbar.LayoutParams.MATCH_PARENT,Toolbar.LayoutParams.WRAP_CONTENT);
+        popCreatePost.getWindow().getAttributes().gravity = Gravity.TOP ;
+
+        // ini popup wid
+
+        popAddImageView = popCreatePost.findViewById(R.id.popupImageView);
+        popupCreateTitleEditText= popCreatePost.findViewById(R.id.popup_titleEditText);
+        popupCreateDescEditText = popCreatePost.findViewById(R.id.popupDescriptionEditText);
+        popupProgerssBar = popCreatePost.findViewById(R.id.popupProgressBar);
+        popCreateImagebtn= popCreatePost.findViewById(R.id.popupImageCreateBtn);
+
+
+        // Create Post On Click Listener
+        popCreateImagebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupProgerssBar.setVisibility(View.VISIBLE);
+                popCreateImagebtn.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
