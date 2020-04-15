@@ -1,4 +1,4 @@
-package com.example.first_firebase.Activities.ui.share;
+package com.example.first_firebase.Activities.ui.singout;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -13,18 +13,18 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.example.first_firebase.R;
 
-public class ShareFragment extends Fragment {
+public class SingOutFragment extends Fragment {
 
-    private ShareViewModel shareViewModel;
+    private SingOutViewModel singOutViewModel;
 
     @SuppressLint("FragmentLiveDataObserve")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        shareViewModel =
-                ViewModelProviders.of(this).get(ShareViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_share, container, false);
+        singOutViewModel =
+                ViewModelProviders.of(this).get(SingOutViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_singout, container, false);
         final TextView textView = root.findViewById(R.id.text_share);
-        shareViewModel.getText().observe(this, new Observer<String>() {
+        singOutViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

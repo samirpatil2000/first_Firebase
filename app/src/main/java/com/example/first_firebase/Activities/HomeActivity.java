@@ -1,7 +1,6 @@
 package com.example.first_firebase.Activities;
 
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -56,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
+                R.id.nav_home, R.id.nav_profile, R.id.nav_slideshow,
                 R.id.nav_tools, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
@@ -90,26 +89,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    public boolean onNavigationItemSelected(MenuItem item){
-        int id = item.getItemId();
-        if (id == R.id.nav_camera){
 
-            return true ;
-        }else if  (id == R.id.nav_gallery) {
-
-        }else if  (id == R.id.nav_slideshow) {
-
-        }else if  (id == R.id.nav_home) {
-
-        }else if  (id == R.id.nav_share) {
-
-        }else if  (id == R.id.nav_send) {
-
-        }
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return  true;
-    }
 
     public void updateNavHeader(){
         NavigationView navigationView = findViewById(R.id.nav_view);

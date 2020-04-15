@@ -1,4 +1,4 @@
-package com.example.first_firebase.Activities.ui.tools;
+package com.example.first_firebase.Activities.ui.settings;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -13,18 +13,18 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.example.first_firebase.R;
 
-public class ToolsFragment extends Fragment {
+public class SettingFragment extends Fragment {
 
-    private ToolsViewModel toolsViewModel;
+    private SettingViewModel settingViewModel;
 
     @SuppressLint("FragmentLiveDataObserve")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        toolsViewModel =
-                ViewModelProviders.of(this).get(ToolsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_tools, container, false);
+        settingViewModel =
+                ViewModelProviders.of(this).get(SettingViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_settings, container, false);
         final TextView textView = root.findViewById(R.id.text_tools);
-        toolsViewModel.getText().observe(this, new Observer<String>() {
+        settingViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -1,4 +1,4 @@
-package com.example.first_firebase.Activities.ui.gallery;
+package com.example.first_firebase.Activities.ui.Profile;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -14,18 +14,18 @@ import androidx.lifecycle.ViewModelProviders;
 //import com.example.first_firebase.Activities.R;
 import com.example.first_firebase.R;
 
-public class GalleryFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private ProfileViewModel profileViewModel;
 
     @SuppressLint("FragmentLiveDataObserve")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
+        profileViewModel =
+                ViewModelProviders.of(this).get(ProfileViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_profile, container, false);
         final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(this, new Observer<String>() {
+        profileViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

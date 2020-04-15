@@ -2,10 +2,7 @@ package com.example.first_firebase.Activities;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,8 +17,10 @@ public class LoginActivity extends AppCompatActivity {
     EditText emailEditText , passwordEditText;
     ProgressBar progressBar ;
     Button loginButton;
+    TextView registerLink;
     private FirebaseAuth auth ;
     private Intent HomeActivity;
+    private Intent RegisterActivity;
 
 
     @Override
@@ -37,9 +36,20 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton=findViewById(R.id.loginButton);
 
+        registerLink=findViewById(R.id.registerLinkTextView);
+
         auth=FirebaseAuth.getInstance();
 
+
         HomeActivity = new Intent(this, com.example.first_firebase.Activities.HomeActivity.class);
+        RegisterActivity= new Intent(this, com.example.first_firebase.Activities.RegisterActivity.class);
+
+        registerLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(RegisterActivity);
+            }
+        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
