@@ -14,8 +14,8 @@
             android:id="@+id/popup_titleEditText"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="1dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="1dp" android:hint="Title"
-            tools:ignore="MissingConstraints" android:layout_marginTop="57dp"
-            app:layout_constraintTop_toTopOf="parent"/>
+            tools:ignore="MissingConstraints" android:layout_marginTop="36dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.0"/>
     <EditText
             android:background="@drawable/popup_edittext_style"
             android:layout_width="410dp"
@@ -27,15 +27,16 @@
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintTop_toBottomOf="@+id/popup_titleEditText" android:hint="Descrption"/>
+            app:layout_constraintTop_toBottomOf="@+id/popup_titleEditText" android:hint="Descrption"
+            android:layout_marginTop="20dp"/>
     <ImageView
-            android:layout_width="409dp"
-            android:layout_height="224dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
+            android:layout_width="403dp"
+            android:layout_height="403dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
             android:id="@+id/popupImageView"
             android:scaleType="centerCrop" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="1dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="1dp"
-            app:layout_constraintTop_toBottomOf="@+id/popupDescriptionEditText"
-            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="20dp"/>
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/popupDescriptionEditText"/>
     <ImageView
             android:padding="12dp"
             android:background="@drawable/circle_post_image"
@@ -43,9 +44,10 @@
             android:layout_height="67dp" app:srcCompat="@drawable/ic_create"
             android:id="@+id/popupImageCreateBtn"
             android:backgroundTint="#F5F5F5"
-            android:layout_marginEnd="172dp"
+            android:layout_marginEnd="180dp"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:layout_editor_absoluteY="462dp"/>
+            tools:ignore="MissingConstraints" android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/popupImageView"/>
     <ProgressBar
             android:visibility="invisible"
             style="?android:attr/progressBarStyle"
@@ -54,7 +56,7 @@
             android:id="@+id/popupProgressBar" android:layout_marginStart="7dp"
             app:layout_constraintStart_toEndOf="@+id/popupImageCreateBtn"
             app:layout_constraintEnd_toStartOf="@+id/popupImageView"
-            android:layout_marginEnd="17dp" app:layout_constraintHorizontal_bias="0.209"
+            android:layout_marginEnd="17dp" app:layout_constraintHorizontal_bias="0.21"
             tools:ignore="MissingConstraints"
             android:background="@drawable/circle_post_image"
             app:layout_constraintTop_toTopOf="@+id/popupImageCreateBtn"/>

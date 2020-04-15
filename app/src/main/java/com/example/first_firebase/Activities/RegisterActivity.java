@@ -23,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth auth;
 
 
+
     public void showMessage(String message){
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
     }
