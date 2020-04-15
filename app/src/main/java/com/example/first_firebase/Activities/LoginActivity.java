@@ -1,7 +1,6 @@
 package com.example.first_firebase.Activities;
 
 import android.content.Intent;
-import android.opengl.Visibility;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar ;
     Button loginButton;
     private FirebaseAuth auth ;
-    private Intent MainActivity ;
+    private Intent HomeActivity;
 
 
     @Override
@@ -40,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
         auth=FirebaseAuth.getInstance();
 
-        MainActivity = new Intent(this, com.example.first_firebase.Activities.MainActivity.class);
+        HomeActivity = new Intent(this, com.example.first_firebase.Activities.HomeActivity.class);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUserInfo() {
-        startActivity(MainActivity);
+        startActivity(HomeActivity);
         finish();
 
     }

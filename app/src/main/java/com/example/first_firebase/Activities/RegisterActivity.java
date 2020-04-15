@@ -1,29 +1,18 @@
 package com.example.first_firebase.Activities;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.view.View;
 import android.widget.*;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import com.example.first_firebase.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -44,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
-        imageView=findViewById(R.id.imageView);
+        imageView=findViewById(R.id.nav_user_image);
         nameEditText=findViewById(R.id.editText);
         emailEditText =findViewById(R.id.editText2);
         passwordhEditText=findViewById(R.id.editText3);
@@ -168,7 +157,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void homeactivity() {
-        Intent homeActivity= new Intent(getApplicationContext(),MainActivity.class);
+        Intent homeActivity= new Intent(getApplicationContext(),HomeActivity.class);
         startActivity(homeActivity);
 
         finish();

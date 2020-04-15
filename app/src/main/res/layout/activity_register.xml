@@ -17,7 +17,7 @@
     <ImageView
             android:layout_width="163dp"
             android:layout_height="131dp" app:srcCompat="@drawable/profile"
-            android:id="@+id/imageView"
+            android:id="@+id/nav_user_image"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="15dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
             android:ems="10"
             android:id="@+id/editText"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="108dp"
-            android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/imageView"
+            android:layout_marginTop="40dp" app:layout_constraintTop_toBottomOf="@+id/nav_user_image"
             android:hint="Enter Your Name"/>
     <EditText
             android:layout_width="wrap_content"
