@@ -24,7 +24,9 @@ package com.example.first_firebase.Adapters;
 //import java.util.zip.Inflater;
 //
 //import static java.security.AccessController.getContext;
-//
+
+
+
 ////public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> {
 ////
 ////    private List<Post> gData ;
@@ -79,32 +81,40 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.example.first_firebase.Models.Post;
 import com.example.first_firebase.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     private static final String TAG = "recyclerViewAdapter";
 
-    private ArrayList<String> name= new ArrayList<>();
-    private ArrayList<String> images= new ArrayList<>();
+    List<Post> gData ;
 
-    public PostAdapter(ArrayList<String> name, ArrayList<String> images, android.content.Context gContext) {
-        this.name = name;
-        this.images = images;
+//
+//    private ArrayList<String> name= new ArrayList<>();
+//    private ArrayList<String> images= new ArrayList<>();
+
+    public PostAdapter(List<Post> gData, Context gContext) {
+        this.gData = gData;
         this.gContext = gContext;
     }
+
+//    public PostAdapter(ArrayList<String> name, ArrayList<String> images, android.content.Context gContext) {
+//        this.name = name;
+//        this.images = images;
+//        this.gContext = gContext;
+//    }
 
     private Context gContext ;
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_post_item,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
 
         return viewHolder;
@@ -117,24 +127,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         Glide.with(gContext)
                 .asBitmap()
-                .load(images.get(position))
+                .load(gData.get(position).getPicture())
                 .into(holder.image);
-        holder.textView.setText(name.get(position));
+        holder.textView.setText(gData.get(position).getTitle());
 
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: ");
-                Toast.makeText(gContext,name.get(position) ,Toast.LENGTH_SHORT).show();
 
-            }
-        });
 
     }
 
     @Override
     public int getItemCount() {
-        return name.size();
+        return gData.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -146,9 +149,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 //            imageView=itemView.findViewById(R.i)
-            textView = itemView.findViewById(R.id.textView);
-            image=itemView.findViewById(R.id.imageView);
-            parentLayout=itemView.findViewById(R.id.parent_layout);
+            textView = itemView.findViewById(R.id.row_postTitle);
+            image=itemView.findViewById(R.id.row_post_image);
+//            parentLayout=itemView.findViewById(R.id.parent_layout);
 
         }
     }
