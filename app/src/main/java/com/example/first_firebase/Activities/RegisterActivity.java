@@ -61,9 +61,15 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                 if (email.isEmpty() || name.isEmpty() || password.isEmpty() || confirmpassword.isEmpty()){
-                    showMessage(" Field Is Empty ");
+
                     if (password != confirmpassword){
                         showMessage("Password Should be same ");
+                        button.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+                    // this is when password is equal
+                    else {
+                        showMessage(" Field Is Empty ");
                         button.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.INVISIBLE);
                     }
