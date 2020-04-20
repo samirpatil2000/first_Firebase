@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Activities.PostDetailActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <EditText
+                android:background="@drawable/edittext_button_style_rounded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Write Comment"
+                android:ems="10"
+                android:id="@+id/postdetail_comment"
+                android:layout_marginTop="50dp"
+                app:layout_constraintTop_toBottomOf="@+id/postDetail_desc"
+                app:layout_constraintEnd_toStartOf="@+id/postDetail_button" android:layout_marginEnd="24dp"/>
+        <TextView
+                android:textColor="#373737"
+                android:lineSpacingExtra="6dp"
+                android:text='i am trying to get id from fragment xml so here is the code the error is " Cannot resolve the method findViewById '
+                android:layout_width="371dp"
+                android:layout_height="wrap_content" android:id="@+id/postDetail_desc"
+                app:layout_constraintTop_toTopOf="@+id/postDetailAuthorName" android:layout_marginTop="40dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"/>
+        <View
+                android:layout_width="0dp"
+                android:layout_height="1dp" android:id="@+id/view2"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/postDetail_title"
+        />
+        <TextView
+                android:text="TextView"
+                android:textStyle="bold"
+                android:layout_width="379dp"
+                android:layout_height="32dp" android:id="@+id/postDetail_title"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/postDetail_img" android:layout_marginTop="32dp"
+                android:textColor="#0A0A0A" android:textSize="24sp"
+        />
+        <ImageView
+                android:layout_width="423dp"
+                android:layout_height="306dp" tools:srcCompat="@mipmap/ic_launcher"
+                android:id="@+id/postDetail_img"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+                android:text="18 April 2020 | by Samir Patil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/postDetailAuthorName" android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/postDetail_title" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="208dp"/>
+        <Button
+                android:text="Add"
+                android:background="@drawable/edittext_button_style_rounded"
+                android:layout_width="81dp"
+                android:layout_height="47dp"
+                android:id="@+id/postDetail_button" android:layout_marginTop="50dp"
+                app:layout_constraintTop_toBottomOf="@+id/postDetail_desc" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"/>
+        <ImageView
+                android:layout_width="54dp"
+                android:layout_height="43dp" tools:srcCompat="@tools:sample/avatars"
+                android:id="@+id/postDetail_current_user_img" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="24dp" android:layout_marginTop="50dp"
+                app:layout_constraintTop_toBottomOf="@+id/postDetail_desc"
+                app:layout_constraintEnd_toStartOf="@+id/postdetail_comment" android:layout_marginEnd="14dp"
+                android:scaleType="centerCrop"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

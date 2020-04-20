@@ -74,6 +74,7 @@ package com.example.first_firebase.Adapters;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,6 +85,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.example.first_firebase.Activities.PostDetailActivity;
 import com.example.first_firebase.Models.Post;
 import com.example.first_firebase.R;
 
@@ -148,10 +150,30 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-//            imageView=itemView.findViewById(R.i)
             textView = itemView.findViewById(R.id.row_postTitle);
             image=itemView.findViewById(R.id.row_post_image);
 //            parentLayout=itemView.findViewById(R.id.parent_layout);
+
+            // Sending Data To the PostDeatil View
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent postDetailActivity = new Intent(gContext, PostDetailActivity.class);
+                    int position = getAdapterPosition();
+
+                    postDetailActivity.putExtra("title",gData.get(position).getTitle());
+                    postDetailActivity.putExtra("postImage",gData.get(position).getPicture());
+                    postDetailActivity.putExtra("postDesc",gData.get(position).getDescription());
+                    postDetailActivity.putExtra("postKey",gData.get(position).getPostKey());
+                   // postDetailActivity.putExtra("userName",gData.get(position).getUserId().toString());
+                    long timestamp = (long) gData.get(position).getTimeStamp();
+                    postDetailActivity.putExtra("postDate",timestamp);
+                    gContext.startActivity(postDetailActivity);
+
+
+
+                }
+            });
 
         }
     }
