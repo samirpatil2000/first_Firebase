@@ -7,7 +7,9 @@ import android.view.WindowManager;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.example.first_firebase.Adapters.CommentAdapter;
 import com.example.first_firebase.Models.Comment;
 import com.example.first_firebase.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -18,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class PostDetailActivity extends AppCompatActivity {
@@ -27,9 +30,15 @@ public class PostDetailActivity extends AppCompatActivity {
     Button addCommentButton;
     String postKey ;
 
+    RecyclerView recyclerView_comment ;
+    CommentAdapter commentAdapter ;
+    List<Comment> comments ;
+
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseDatabase firebaseDatabase ;
+
+    static  String COMMENT_KEY ="Comment" ;
 
 
     @Override
@@ -48,6 +57,9 @@ public class PostDetailActivity extends AppCompatActivity {
 
         editTextComment = findViewById(R.id.postdetail_comment);
         addCommentButton = findViewById(R.id.postDetail_button);
+
+        recyclerView_comment = findViewById(R.id.recyclerView_comment);
+
 
 
         // let's set status bar to transperant Action bar is invisible
@@ -69,7 +81,7 @@ public class PostDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addCommentButton.setVisibility(View.INVISIBLE);
-                DatabaseReference commentReference = firebaseDatabase.getReference("Comment").child(postKey);
+                DatabaseReference commentReference = firebaseDatabase.getReference(COMMENT_KEY).child(postKey);
                 String comment_content = editTextComment.getText().toString();
                 String uid = firebaseUser.getUid();
                 String uname = firebaseUser.getDisplayName();
@@ -105,9 +117,36 @@ public class PostDetailActivity extends AppCompatActivity {
 
         String timestamp = getIntent().getExtras().getString("postDate");
 
-
         // set comment
 
+        // init recycler View
+        initRecyclerCommentView();
+
+
+    }
+
+    private void initRecyclerCommentView() {
+//        recyclerView_comment.setLayoutManager(new LinearLayoutManager(this));
+//
+        DatabaseReference databaseReference = firebaseDatabase.getReference(COMMENT_KEY).child(postKey);
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                comments = new ArrayList<>();
+//                for(DataSnapshot snap:dataSnapshot.getChildren()){
+//                    Comment comment =  snap.getValue(Comment.class);
+//                    comments.add(comment);
+//                }
+//             commentAdapter=new CommentAdapter(getApplicationContext(),comments);
+//                recyclerView_comment.setAdapter(commentAdapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
 
     }

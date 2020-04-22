@@ -47,6 +47,9 @@ public class HomeActivity extends AppCompatActivity {
     ImageView popAddImageView ,popCreateImagebtn;
     EditText popupCreateTitleEditText , popupCreateDescEditText ;
     ProgressBar popupProgerssBar;
+
+
+
     private static final int PICK_IMAGE=1;
     int REQUESTCODE = 1 ;
     int PReqCode = 1 ;
@@ -110,8 +113,6 @@ public class HomeActivity extends AppCompatActivity {
                 // Open gallery
                 // check that app has access to files
                 checkaAndRequestForPermission();
-
-
 
             }
         });
@@ -212,9 +213,6 @@ public class HomeActivity extends AppCompatActivity {
                     Toast.makeText(HomeActivity.this,"Plz Enter The Correct INput ",Toast.LENGTH_LONG).show();
                     popupProgerssBar.setVisibility(View.INVISIBLE);
                     popCreateImagebtn.setVisibility(View.VISIBLE);
-
-
-
 
                 }
             }

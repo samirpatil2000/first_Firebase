@@ -128,6 +128,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         UserProfileChangeRequest profileChangeRequest= new UserProfileChangeRequest.Builder()
+
                 .setDisplayName(name)
                 .build();
 

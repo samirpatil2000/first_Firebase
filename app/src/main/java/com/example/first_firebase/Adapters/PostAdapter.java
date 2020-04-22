@@ -170,8 +170,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     postDetailActivity.putExtra("postDate",timestamp);
                     gContext.startActivity(postDetailActivity);
 
-
-
                 }
             });
 
